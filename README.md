@@ -1,0 +1,188 @@
+# 🐾 WhatPokemon
+
+A modern iOS app for browsing and discovering Pokémon, built with SwiftUI and Clean Architecture.
+
+<p align="center">
+  <img src="https://img.shields.io/badge/iOS-26.2+-blue.svg" />
+  <img src="https://img.shields.io/badge/Swift-6.2-orange.svg" />
+  <img src="https://img.shields.io/badge/Xcode-26.2+-blue.svg" />
+  <img src="https://img.shields.io/badge/License-MIT-green.svg" />
+</p>
+
+## ✨ Features
+
+- 📱 **Browse All Pokémon**: Explore the complete Pokédex with infinite scroll pagination
+- 🔍 **Detailed View**: View stats, types, sprites, and more for each Pokémon
+- ⭐ **Favorites**: Mark your favorite Pokémon and access them quickly
+- 💾 **Offline-First**: Cache-first architecture for instant loading, works completely offline
+- 🎨 **Modern UI**: Beautiful SwiftUI interface with smooth animations
+- 🏗️ **Clean Architecture**: MVVM + Clean Architecture for maintainability
+- 🧪 **Well Tested**: Written tests for all the layers of its architecture(Still it would be nice to add more)
+
+## 🏗️ Architecture
+
+This project follows **Clean Architecture** principles with **MVVM** pattern, implementing an **offline-first** approach for optimal user experience.
+
+### Architecture Layers
+
+```
+whatpokemon/
+├── App/                 # Dependency injection container
+├── Core/                # Shared infrastructure
+│   ├── Networking/      # HTTP client, endpoints, error handling
+│   ├── Storage/         # SwiftData actors, favorites manager
+│   └── Utilities/       # Extensions, helpers, color utilities
+├── Data/               # Data layer (implements Domain interfaces)
+│   ├── DTOs/            # Network response models (Codable)
+│   ├── Mappers/          # DTO ↔ Entity ↔ PersistentModel converters
+│   ├── PersistentModels/ # SwiftData @Model classes
+│   └── Repositories/     # Concrete repository implementations
+├── Domain/               # Business logic layer (framework-independent)
+│   ├── Entities/        # Core domain models (Pokemon, PokemonDetail, etc.)
+│   ├── Interfaces/      # Repository protocols (dependency inversion)
+│   └── UseCases/        # Business use cases (FetchPokemonList, etc.)
+└── Features/            # Presentation layer (SwiftUI + ViewModels)
+    ├── PokemonList/    # List screen with infinite scroll
+    ├── PokemonDetail/  # Detail screen with stats and sprites
+    ├── Favorites/      # Favorites management
+    └── Info/            # About and storage management (UI)
+```
+
+### Key Architectural Patterns
+
+#### 1. **Offline-First with AsyncStream**
+The repository layer emits data twice via `AsyncStream`:
+- **First emission**: Cached data from SwiftData (instant)
+- **Second emission**: Fresh data from network (background)
+
+This ensures the UI is always responsive, even offline.
+
+#### 2. **Clean Architecture Layers**
+- **Domain Layer**: Pure Swift, no framework dependencies
+- **Data Layer**: Handles persistence (SwiftData) and networking
+- **Presentation Layer**: SwiftUI views with `@Observable` ViewModels
+
+#### 3. **Dependency Injection**
+All dependencies are injected through a central `DependencyContainer`, making the code testable and maintainable.
+
+#### 4. **Actor Isolation**
+- `PokemonDataActor`: Thread-safe SwiftData operations
+- `@MainActor` ViewModels: UI updates on main thread
+- Proper `Sendable` conformance throughout
+
+#### 5. **MVVM with Observation Framework**
+- ViewModels use Swift's `@Observable` macro (not ObservableObject), these connect UI to the Domain/Business layer through use cases
+- Fine-grained reactivity without manual `@Published` properties
+- Automatic UI updates when state changes
+
+### Key Technologies
+
+- **SwiftUI**: Modern declarative UI framework
+- **Swift 6.2**: Latest Swift with strict concurrency
+- **SwiftData**: For local persistence with actor isolation
+- **Async/Await**: Modern concurrency with AsyncStream
+- **Actor Isolation**: Thread-safe data access
+- **Kingfisher 8.6.2**: Image downloading and caching
+- **MVVM**: Clear separation of concerns
+- **Dependency Injection**: Testable architecture
+- **Swift Testing**: Modern testing framework
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Xcode 26.2 or later
+- iOS 26.2 or later
+- macOS Tahoe 26.1 or later
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/whatpokemon.git
+cd whatpokemon
+```
+
+2. Open the project:
+```bash
+open whatpokemon.xcodeproj
+```
+
+3. **Important**: Change the bundle identifier to your own:
+   - Open project settings
+   - Select the `whatpokemon` target
+   - Change `Bundle Identifier` from `com.chepedeveloper.whatpokemon` to your own
+   - Select your Development Team
+
+4. Build and run (⌘R)
+
+### Running Tests
+
+Run all tests with:
+```bash
+xcodebuild test -scheme whatpokemon -destination 'platform=iOS Simulator,name=iPhone 17'
+```
+
+Or use Xcode's test navigator (⌘U)
+
+## 📦 Dependencies
+
+- [Kingfisher](https://github.com/onevcat/Kingfisher) (8.6.2) - Image downloading and caching
+
+## 🌐 API
+
+This app uses the free [PokéAPI](https://pokeapi.co/) - no API key required!
+
+## 🎯 Features in Detail
+
+### Offline-First Architecture
+- **Cache-first data loading** for instant UX
+- **Background refresh** keeps data fresh
+- **Works completely offline** after initial load
+- **AsyncStream** for reactive data flow
+
+### Memory Management
+- **Task.detached** for independent background work
+- **Proper actor isolation** with SwiftData
+- **No memory leaks** or retain cycles
+- **Efficient image caching** with Kingfisher
+
+### Testing
+- **59 unit tests** covering:
+  - ViewModels (with mock repositories)
+  - Use Cases
+  - Mappers (DTO ↔ Entity conversions)
+  - DTOs (JSON decoding)
+  - Entities (domain models)
+  - Network layer (with MockURLProtocol)
+- **100% pass rate**
+- **Comprehensive test coverage** of business logic
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👨‍💻 Author
+
+**Jose Chirinos**
+- Website: [codewithjose.com](https://codewithjose.com)
+- Mobile Developer & Motorcycle Enthusiast 🏍️
+
+## 🙏 Acknowledgments
+
+- [PokéAPI](https://pokeapi.co/) for the amazing free API
+- [Kingfisher](https://github.com/onevcat/Kingfisher) for excellent image handling and caching
+
+---
+
+Made with ☕️ and SwiftUI
