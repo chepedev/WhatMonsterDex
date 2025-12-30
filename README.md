@@ -11,7 +11,7 @@ It is currently under AppStore review/deployment, once approved:  https://apps.a
   <img src="https://img.shields.io/badge/iOS-26.2+-blue.svg" />
   <img src="https://img.shields.io/badge/Swift-6.2-orange.svg" />
   <img src="https://img.shields.io/badge/Xcode-26.2+-blue.svg" />
-  <img src="https://img.shields.io/badge/License-MIT-green.svg" />
+  <img src="https://img.shields.io/badge/License-ESL-green.svg" />
 </p>
 
 ## ✨ Features
