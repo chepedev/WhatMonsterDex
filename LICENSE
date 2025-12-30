@@ -1,16 +1,30 @@
-MIT License
+Educational Source License (ESL)
 
 Copyright (c) 2025 Jose Chirinos
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+of this software and associated documentation files (the "Software"), to use
+the Software for EDUCATIONAL and REFERENCE purposes only, subject to the
+following conditions:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+PERMITTED USES:
+- Study and learn from the code
+- Use code snippets and patterns in your own projects
+- Fork and modify for personal learning
+- Reference in educational materials and tutorials
+
+PROHIBITED USES:
+- Direct deployment of this application (or substantially similar versions)
+  to any app store (including but not limited to Apple App Store, Google Play)
+- Commercial distribution of the application
+- Rebranding and republishing as your own application
+- Creating derivative works that compete with the original application
+
+ATTRIBUTION:
+- The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software used in derivative works
+- Credit must be given to the original author (Jose Chirinos) when using
+  significant portions of the code
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -19,3 +33,6 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+For commercial use or app store distribution rights, please contact:
+Jose Chirinos - https://codewithjose.com
