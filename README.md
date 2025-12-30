@@ -15,15 +15,15 @@ It is currently under AppStore review/deployment, once approved:  https://apps.a
   <img src="https://img.shields.io/badge/License-ESL-green.svg" />
 </p>
 
-## ✨ Features
+## Features:
 
-- 📱 **Browse All Pokémon**: Explore the complete Pokédex with infinite scroll pagination
-- 🔍 **Detailed View**: View stats, types, sprites, and more for each Pokémon
-- ⭐ **Favorites**: Mark your favorite Pokémon and access them quickly
-- 💾 **Offline-First**: Cache-first architecture for instant loading, works completely offline
-- 🎨 **Modern UI**: Beautiful SwiftUI with the new Glass effects :) (check the bottom nav bar)
-- 🏗️ **Clean Architecture**: MVVM + Clean Architecture for maintainability
-- 🧪 **Well Tested**: Written tests for all the layers of its architecture(Still it would be nice to add more)
+- **Browse All Pokémon**: Explore the complete Pokédex with infinite scroll pagination
+- **Detailed View**: View stats, types, sprites, and more for each Pokémon
+- **Favorites**: Mark your favorite Pokémon and access them quickly
+- **Offline-First**: Cache-first architecture for instant loading, works completely offline
+- **Modern UI**: Beautiful SwiftUI with the new Glass effects :) (check the bottom nav bar)
+- **Clean Architecture**: MVVM + Clean Architecture for maintainability
+- **Well Tested**: Written tests for all the layers of its architecture(Still it would be nice to add more)
 
 ## 🏗️ Architecture
 
