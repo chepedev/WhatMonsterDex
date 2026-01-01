@@ -1,4 +1,5 @@
 # 🐾 WhatMonsterDex
+<img width="2816" height="1536" alt="Gemini_Generated_Image_10epdx10epdx10ep" src="https://github.com/user-attachments/assets/ba657ee2-7f81-443b-a8db-937bff74bc19" />
 
 A modern iOS app for browsing and discovering Pokémon, built with SwiftUI and Clean Architecture.
 
@@ -14,15 +15,15 @@ It is currently under AppStore review/deployment, once approved:  https://apps.a
   <img src="https://img.shields.io/badge/License-ESL-green.svg" />
 </p>
 
-## ✨ Features
+## Features:
 
-- 📱 **Browse All Pokémon**: Explore the complete Pokédex with infinite scroll pagination
-- 🔍 **Detailed View**: View stats, types, sprites, and more for each Pokémon
-- ⭐ **Favorites**: Mark your favorite Pokémon and access them quickly
-- 💾 **Offline-First**: Cache-first architecture for instant loading, works completely offline
-- 🎨 **Modern UI**: Beautiful SwiftUI with the new Glass effects :) (check the bottom nav bar)
-- 🏗️ **Clean Architecture**: MVVM + Clean Architecture for maintainability
-- 🧪 **Well Tested**: Written tests for all the layers of its architecture(Still it would be nice to add more)
+- **Browse All Pokémon**: Explore the complete Pokédex with infinite scroll pagination
+- **Detailed View**: View stats, types, sprites, and more for each Pokémon
+- **Favorites**: Mark your favorite Pokémon and access them quickly
+- **Offline-First**: Cache-first architecture for instant loading, works completely offline
+- **Modern UI**: Beautiful SwiftUI with the new Glass effects :) (check the bottom nav bar)
+- **Clean Architecture**: MVVM + Clean Architecture for maintainability
+- **Well Tested**: Written tests for all the layers of its architecture(Still it would be nice to add more)
 
 ## 🏗️ Architecture
 
@@ -146,5 +147,13 @@ reason why I am not monetizing the app at all, again this is for EDUCATIONAL pur
 - [Kingfisher](https://github.com/onevcat/Kingfisher) for excellent image handling and caching
 
 ---
+## Screenshots:
+
+<img width="1284" height="2778" alt="Simulator Screenshot - iPhone 17 Pro Max - 2025-12-26 at 22 30 40" src="https://github.com/user-attachments/assets/4dc76638-b02c-4c4b-97bc-5efa7da0a7d0" />
+<img width="1284" height="2778" alt="Simulator Screenshot - iPhone 17 Pro Max - 2025-12-26 at 22 30 46" src="https://github.com/user-attachments/assets/9f7fb3a9-b2fb-4063-98e2-01231a4ba6b4" />
+<img width="1284" height="2778" alt="Simulator Screenshot - iPhone 17 Pro Max - 2025-12-26 at 22 30 55" src="https://github.com/user-attachments/assets/31b935e1-f22a-4102-b8b1-f33c2aef8c16" />
+
+
+
 
 Made with ☕️ and SwiftUI
