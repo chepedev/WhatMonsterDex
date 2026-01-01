@@ -1,4 +1,4 @@
-# 🐾 WhatPokemon
+# 🐾 WhatMonsterDex
 
 A modern iOS app for browsing and discovering Pokémon, built with SwiftUI and Clean Architecture.
 
@@ -31,7 +31,7 @@ This project follows **Clean Architecture** principles with **MVVM** pattern, im
 ### Architecture Layers
 
 ```
-whatpokemon/
+WhatMonsterDex/
 ├── App/                 # Dependency injection container
 ├── Core/                # Shared infrastructure
 │   ├── Networking/      # HTTP client, endpoints, error handling
@@ -78,31 +78,25 @@ Everythig up to date with the latest version of Xcode and Swift as of Dec 2025.
 
 ### Installation
 
-1. Clone the repository:
+1. Open the project:
 ```bash
-git clone https://github.com/yourusername/whatpokemon.git
-cd whatpokemon
-```
-
-2. Open the project:
-```bash
-open whatpokemon.xcodeproj
+open whatmonsterdex.xcodeproj
 ```
 This project uses Swift Package Manager for dependencies, so no additional setup is required.
 
-3. **Important**: Change the bundle identifier to your own:
+2. **Important**: Change the bundle identifier to your own:
    - Open project settings
-   - Select the `whatpokemon` target
+   - Select the `WhatMonsterDex` target
    - Change `Bundle Identifier` from `com.chepedeveloper.whatpokemon` to your own
    - Select your Development Team
 
-4. Build and run (⌘R)
+3. Build and run (⌘R)
 
 ### Running Tests
 
 Run all tests with:
 ```bash
-xcodebuild test -scheme whatpokemon -destination 'platform=iOS Simulator,name=iPhone 17'
+xcodebuild test -scheme WhatMonsterDex -destination 'platform=iOS Simulator,name=iPhone 17'
 ```
 
 Or use Xcode's test navigator (⌘U)
