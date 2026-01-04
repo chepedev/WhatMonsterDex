@@ -56,8 +56,6 @@ final class MockPokemonRepository: PokemonRepositoryProtocol, @unchecked Sendabl
     }
 }
 
-// MARK: - Mock Data
-
 extension Pokemon {
     static var mock: Pokemon {
         Pokemon(

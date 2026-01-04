@@ -23,3 +23,21 @@ struct TypeBadge: View {
             .accessibilityLabel("Type: \(type.name)")
     }
 }
+
+#Preview("Type of Badges") {
+    VStack(spacing: 16) {
+        HStack {
+            TypeBadge(type: PokemonType(name: "fire"))
+            TypeBadge(type: PokemonType(name: "water"))
+        }
+        HStack {
+            TypeBadge(type: PokemonType(name: "grass"))
+            TypeBadge(type: PokemonType(name: "electric"))
+        }
+        HStack {
+            TypeBadge(type: PokemonType(name: "psychic"))
+            TypeBadge(type: PokemonType(name: "dragon"))
+        }
+    }
+    .padding()
+}

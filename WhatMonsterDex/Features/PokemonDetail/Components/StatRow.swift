@@ -61,3 +61,15 @@ struct StatRow: View {
         }
     }
 }
+
+#Preview("Stat Rows") {
+    VStack(spacing: 12) {
+        StatRow(stat: Stat(name: "hp", baseStat: 45, effort: 0))
+        StatRow(stat: Stat(name: "attack", baseStat: 80, effort: 1))
+        StatRow(stat: Stat(name: "defense", baseStat: 100, effort: 2))
+        StatRow(stat: Stat(name: "special-attack", baseStat: 120, effort: 0))
+        StatRow(stat: Stat(name: "special-defense", baseStat: 150, effort: 1))
+        StatRow(stat: Stat(name: "speed", baseStat: 200, effort: 2))
+    }
+    .padding()
+}

@@ -14,7 +14,6 @@ import Observation
 @MainActor
 @Observable
 final class PokemonListViewModel {
-    // MARK: - Published State
     
     private(set) var pokemon: [Pokemon] = []
     private(set) var isLoading = false
@@ -30,7 +29,6 @@ final class PokemonListViewModel {
         }
     }
     
-    // MARK: - Private State
     
     private var allPokemon: [Pokemon] = []
     private var currentOffset = 0
@@ -38,9 +36,7 @@ final class PokemonListViewModel {
     private let useCase: FetchPokemonListUseCase
     private var loadTask: Task<Void, Never>?
     private let repository: PokemonRepositoryProtocol
-    
-    // MARK: - Initialization
-    
+        
     init(useCase: FetchPokemonListUseCase, repository: PokemonRepositoryProtocol) {
         self.useCase = useCase
         self.repository = repository
@@ -51,7 +47,6 @@ final class PokemonListViewModel {
         }
     }
     
-    // MARK: - Public Methods
     
     /// Loads the next page of Pokemon
     func loadNextPage() {
@@ -173,7 +168,6 @@ final class PokemonListViewModel {
         }
     }
     
-    // MARK: - Private Methods
     
     private func handleSuccessfulLoad(_ newPokemon: [Pokemon]) {
         if newPokemon.isEmpty {
@@ -239,8 +233,6 @@ final class PokemonListViewModel {
         isDownloadComplete = count > 1000
     }
 }
-
-// MARK: - Supporting Types
 
 enum ToastType {
     case error, warning, info

@@ -17,31 +17,26 @@ struct InfoView: View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 32) {
-                    // App Info Section
                     appInfoSection
                     
                     Divider()
                         .padding(.horizontal)
                     
-                    // Storage Management Section
                     storageSection
                     
                     Divider()
                         .padding(.horizontal)
                     
-                    // Developer Section
                     developerSection
                     
                     Divider()
                         .padding(.horizontal)
                     
-                    // Contact Section
                     contactSection
                     
                     Divider()
                         .padding(.horizontal)
                     
-                    // Technical Details Section (Collapsible)
                     technicalDetailsSection
                 }
                 .padding()
@@ -61,7 +56,6 @@ struct InfoView: View {
         }
     }
     
-    // MARK: - App Info Section
     
     private var appInfoSection: some View {
         VStack(spacing: 16) {
@@ -91,7 +85,6 @@ struct InfoView: View {
         }
     }
     
-    // MARK: - Storage Section
     
     private var storageSection: some View {
         VStack(spacing: 16) {
@@ -146,9 +139,7 @@ struct InfoView: View {
             }
         }
     }
-    
-    // MARK: - Developer Section
-    
+        
     private var developerSection: some View {
         VStack(spacing: 16) {
             Image(systemName: "person.circle.fill")
@@ -183,9 +174,7 @@ struct InfoView: View {
                 .italic()
         }
     }
-    
-    // MARK: - Contact Section
-    
+        
     private var contactSection: some View {
         VStack(spacing: 16) {
             Text("Let's Connect!")
@@ -246,7 +235,6 @@ struct InfoView: View {
             
             if showTechnicalDetails {
                 VStack(alignment: .leading, spacing: 20) {
-                    // Architecture Section
                     VStack(alignment: .leading, spacing: 8) {
                         HStack {
                             Image(systemName: "building.columns.fill")
@@ -271,7 +259,6 @@ struct InfoView: View {
                     
                     Divider()
                     
-                    // Data Source Section
                     VStack(alignment: .leading, spacing: 8) {
                         HStack {
                             Image(systemName: "server.rack")
@@ -306,7 +293,6 @@ struct InfoView: View {
                     
                     Divider()
                     
-                    // Attribution Section
                     VStack(alignment: .leading, spacing: 8) {
                         HStack {
                             Image(systemName: "info.circle.fill")
@@ -393,4 +379,48 @@ struct TechPoint: View {
                 .foregroundColor(.secondary)
         }
     }
+}
+
+// MARK: - Previews
+
+#Preview("Info View") {
+    @Previewable @State var viewModel = InfoViewModel(dataActor: PreviewDataActor.shared)
+    
+    InfoView(viewModel: viewModel)
+}
+
+#Preview("Feature Row") {
+    VStack(spacing: 8) {
+        FeatureRow(icon: "magnifyingglass", text: "Search Pokémon by name or ID")
+        FeatureRow(icon: "star.fill", text: "Save your favorites")
+        FeatureRow(icon: "wifi.slash", text: "Works offline with cached data")
+        FeatureRow(icon: "photo", text: "High-quality Pokémon sprites")
+    }
+    .padding()
+}
+
+#Preview("Info Card") {
+    VStack(spacing: 12) {
+        InfoCard(icon: "iphone", title: "Mobile Developer", description: "Crafting delightful iOS experiences")
+        InfoCard(icon: "motorcycle.fill", title: "Motorcycle Enthusiast", description: "Two wheels, endless adventures 🏍️")
+        InfoCard(icon: "swift", title: "SwiftUI Wizard", description: "Building apps with modern Swift")
+    }
+    .padding()
+}
+
+#Preview("Tech Point") {
+    VStack(alignment: .leading, spacing: 6) {
+        TechPoint(text: "MVVM (Model-View-ViewModel) pattern")
+        TechPoint(text: "Clean Architecture principles")
+        TechPoint(text: "Swift 6 concurrency with async/await")
+        TechPoint(text: "SwiftData for local persistence")
+        TechPoint(text: "Offline-first approach")
+    }
+    .padding()
+}
+
+// MARK: - Preview Helpers
+
+private final class PreviewDataActor {
+    static let shared = PokemonDataActor(modelContainer: PreviewModelContainer.shared)
 }

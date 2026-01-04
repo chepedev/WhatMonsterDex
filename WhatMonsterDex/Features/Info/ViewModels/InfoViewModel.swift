@@ -14,18 +14,14 @@ import Kingfisher
 @Observable
 final class InfoViewModel {
 
-    // MARK: - State
     private(set) var storageSize: String = "Calculating..."
     private(set) var pokemonCount: Int = 0
     private let dataActor: PokemonDataActor
-    
-    // MARK: - Initialization
-    
+        
     init(dataActor: PokemonDataActor) {
         self.dataActor = dataActor
     }
     
-    // MARK: - Public Methods
     
     func calculateStorageSize() {
         Task {
@@ -64,7 +60,6 @@ final class InfoViewModel {
         }
     }
     
-    // MARK: - Private Methods
     private func formatBytes(_ bytes: Int) -> String {
         let formatter = ByteCountFormatter()
         formatter.allowedUnits = [.useKB, .useMB]

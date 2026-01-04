@@ -12,19 +12,15 @@ import Observation
 @MainActor
 @Observable
 final class FavoritesViewModel {
-    //MARK: State
     
     private(set) var favoritePokemon: [Pokemon] = []
     private(set) var isLoading = false
     private let repository: PokemonRepositoryProtocol
     
-    // MARK: Initialization
     init(repository: PokemonRepositoryProtocol) {
         self.repository = repository
     }
-    
-    // MARK: - Public Methods
-    
+        
     func loadFavorites() {
         isLoading = true
         

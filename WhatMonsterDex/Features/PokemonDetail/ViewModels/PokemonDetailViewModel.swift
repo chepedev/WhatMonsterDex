@@ -11,7 +11,6 @@ import Observation
 @MainActor
 @Observable
 final class PokemonDetailViewModel {
-    // MARK: State
     
     private(set) var pokemonDetail: PokemonDetail?
     private(set) var isLoading = false
@@ -22,16 +21,13 @@ final class PokemonDetailViewModel {
     private let useCase: FetchPokemonDetailUseCase
     private let repository: PokemonRepositoryProtocol
     private var loadTask: Task<Void, Never>?
-    
-    // MARK: - Initialization
-    
+        
     init(pokemonID: Int, useCase: FetchPokemonDetailUseCase, repository: PokemonRepositoryProtocol) {
         self.pokemonID = pokemonID
         self.useCase = useCase
         self.repository = repository
     }
     
-    // MARK: - Public Methods
     
     func loadDetail() {
         guard !isLoading else { return }

@@ -1,6 +1,6 @@
 //
 //  PokemonListView.swift
-// WhatMonsterDex
+//  WhatMonsterDex
 //
 //  Created by Jose Chirinos Odio on 28/12/25.
 //
@@ -88,7 +88,6 @@ struct PokemonListView: View {
                     viewModel.loadNextPage()
                 }
                 
-                // Toast overlay
                 if let message = viewModel.toastMessage {
                     VStack {
                         Spacer()
@@ -104,4 +103,70 @@ struct PokemonListView: View {
             }
         }
     }
+}
+
+#Preview("Pokemon List") {
+    @Previewable @State var viewModel = PokemonListViewModel(
+        useCase: FetchPokemonListUseCase(repository: MockPokemonListRepository.withPokemon),
+        repository: MockPokemonListRepository.withPokemon
+    )
+    
+    PokemonListView(viewModel: viewModel, dependencyContainer: PreviewDependencyContainer.shared)
+}
+// Mock ups
+
+private final class MockPokemonListRepository: PokemonRepositoryProtocol {
+    let mockPokemon: [Pokemon]
+    
+    init(pokemon: [Pokemon] = []) {
+        self.mockPokemon = pokemon
+    }
+    
+    static var withPokemon: MockPokemonListRepository {
+        MockPokemonListRepository(pokemon: [
+            Pokemon(
+                id: 1,
+                name: "bulbasaur",
+                spriteURL: URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"),
+                types: [PokemonType(name: "grass"), PokemonType(name: "poison")]
+            ),
+            Pokemon(
+                id: 4,
+                name: "charmander",
+                spriteURL: URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png"),
+                types: [PokemonType(name: "fire")]
+            ),
+            Pokemon(
+                id: 7,
+                name: "squirtle",
+                spriteURL: URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png"),
+                types: [PokemonType(name: "water")]
+            ),
+            Pokemon(
+                id: 25,
+                name: "pikachu",
+                spriteURL: URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"),
+                types: [PokemonType(name: "electric")]
+            )
+        ])
+    }
+    
+    func fetchPokemonList(offset: Int, limit: Int) async throws -> [Pokemon] { mockPokemon }
+    
+    func fetchPokemonDetail(id: Int) async throws -> PokemonDetail {
+        PokemonDetail(
+            id: id,
+            name: "preview",
+            height: 7,
+            weight: 69,
+            stats: [],
+            types: [],
+            sprites: PokemonSprite(frontDefault: nil, frontShiny: nil, backDefault: nil, backShiny: nil)
+        )
+    }
+    
+    func toggleFavorite(id: Int) async -> Bool { false }
+    func isFavorite(id: Int) async -> Bool { false }
+    func getFavorites() async -> [Pokemon] { [] }
+    func getCachedPokemonCount() async -> Int { 0 }
 }

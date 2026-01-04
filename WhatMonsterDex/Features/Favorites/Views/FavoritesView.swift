@@ -55,3 +55,73 @@ struct FavoritesView: View {
         }
     }
 }
+
+#Preview("Favorites - Empty") {
+    @Previewable @State var viewModel = FavoritesViewModel(repository: MockFavoritesRepository.empty)
+    
+    FavoritesView(viewModel: viewModel, dependencyContainer: PreviewDependencyContainer.shared)
+}
+
+#Preview("Favorites - With Pokemon") {
+    @Previewable @State var viewModel = FavoritesViewModel(repository: MockFavoritesRepository.withFavorites)
+    
+    FavoritesView(viewModel: viewModel, dependencyContainer: PreviewDependencyContainer.shared)
+}
+
+
+private final class MockFavoritesRepository: PokemonRepositoryProtocol {
+    let mockFavorites: [Pokemon]
+    
+    init(favorites: [Pokemon] = []) {
+        self.mockFavorites = favorites
+    }
+    
+    static var empty: MockFavoritesRepository {
+        MockFavoritesRepository()
+    }
+    
+    static var withFavorites: MockFavoritesRepository {
+        MockFavoritesRepository(favorites: [
+            Pokemon(
+                id: 25,
+                name: "pikachu",
+                spriteURL: URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"),
+                types: [PokemonType(name: "electric")],
+                isFavorite: true
+            ),
+            Pokemon(
+                id: 6,
+                name: "charizard",
+                spriteURL: URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png"),
+                types: [PokemonType(name: "fire"), PokemonType(name: "flying")],
+                isFavorite: true
+            ),
+            Pokemon(
+                id: 9,
+                name: "blastoise",
+                spriteURL: URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/9.png"),
+                types: [PokemonType(name: "water")],
+                isFavorite: true
+            )
+        ])
+    }
+    
+    func fetchPokemonList(offset: Int, limit: Int) async throws -> [Pokemon] { [] }
+    
+    func fetchPokemonDetail(id: Int) async throws -> PokemonDetail {
+        PokemonDetail(
+            id: id,
+            name: "preview",
+            height: 7,
+            weight: 69,
+            stats: [],
+            types: [],
+            sprites: PokemonSprite(frontDefault: nil, frontShiny: nil, backDefault: nil, backShiny: nil)
+        )
+    }
+    
+    func toggleFavorite(id: Int) async -> Bool { true }
+    func isFavorite(id: Int) async -> Bool { mockFavorites.contains { $0.id == id } }
+    func getFavorites() async -> [Pokemon] { mockFavorites }
+    func getCachedPokemonCount() async -> Int { 0 }
+}

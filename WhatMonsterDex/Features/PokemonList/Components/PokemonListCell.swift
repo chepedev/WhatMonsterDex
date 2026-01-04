@@ -55,3 +55,28 @@ struct PokemonListCell: View {
         .accessibilityLabel("\(pokemon.name), types: \(pokemon.types.map(\.name).joined(separator: ", "))")
     }
 }
+
+#Preview("Pokemon List Cell") {
+    List {
+        PokemonListCell(pokemon: Pokemon(
+            id: 25,
+            name: "pikachu",
+            spriteURL: URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"),
+            types: [
+                PokemonType(name: "electric")
+            ],
+            isFavorite: false
+        ))
+        
+        PokemonListCell(pokemon: Pokemon(
+            id: 6,
+            name: "charizard",
+            spriteURL: URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png"),
+            types: [
+                PokemonType(name: "fire"),
+                PokemonType(name: "flying")
+            ],
+            isFavorite: true
+        ))
+    }
+}

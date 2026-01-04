@@ -40,3 +40,12 @@ struct ToastView: View {
         }
     }
 }
+
+#Preview("Toast Types") {
+    VStack(spacing: 20) {
+        ToastView(message: "Error loading data", type: .error)
+        ToastView(message: "Warning: Slow connection", type: .warning)
+        ToastView(message: "Download complete!", type: .info)
+    }
+    .padding()
+}

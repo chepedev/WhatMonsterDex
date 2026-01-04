@@ -37,8 +37,6 @@ struct PokemonDetailView: View {
         }
     }
     
-    // MARK: - Loading View
-    
     private var loadingView: some View {
         VStack(spacing: 16) {
             ProgressView()
@@ -49,8 +47,6 @@ struct PokemonDetailView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
-    
-    // MARK: - Error View
     
     private func errorView(_ error: Error) -> some View {
         VStack(spacing: 16) {
@@ -81,28 +77,17 @@ struct PokemonDetailView: View {
         .padding()
     }
     
-    // MARK: - Detail Content
-    
     private func detailContent(_ detail: PokemonDetail) -> some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 24) {
-                // Header with sprite
                 headerSection(detail)
-                
-                // Types
                 typesSection(detail)
-                
-                // Physical attributes
                 physicalAttributesSection(detail)
-                
-                // Stats
                 statsSection(detail)
             }
             .padding()
         }
     }
-    
-    // MARK: - Header Section
     
     private func headerSection(_ detail: PokemonDetail) -> some View {
         VStack(spacing: 16) {
@@ -110,9 +95,7 @@ struct PokemonDetailView: View {
                 .placeholder {
                     ProgressView()
                 }
-                .onFailure { _ in
-                    // Silently handle image load failures
-                }
+                .onFailure { _ in }
                 .retry(maxCount: 1, interval: .seconds(1))
                 .resizable()
                 .scaledToFit()
@@ -133,8 +116,6 @@ struct PokemonDetailView: View {
         .frame(maxWidth: .infinity)
     }
     
-    // MARK: - Types Section
-    
     private func typesSection(_ detail: PokemonDetail) -> some View {
         VStack(alignment: .leading, spacing: 8) {
             Text("Types")
@@ -148,8 +129,6 @@ struct PokemonDetailView: View {
             }
         }
     }
-    
-    // MARK: - Physical Attributes Section
     
     private func physicalAttributesSection(_ detail: PokemonDetail) -> some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -183,8 +162,6 @@ struct PokemonDetailView: View {
         }
     }
     
-    // MARK: - Stats Section
-    
     private func statsSection(_ detail: PokemonDetail) -> some View {
         VStack(alignment: .leading, spacing: 12) {
             Text("Base Stats")
@@ -196,4 +173,105 @@ struct PokemonDetailView: View {
             }
         }
     }
+}
+
+#Preview("Pikachu") {
+    NavigationStack {
+        PokemonDetailView(viewModel: .previewPikachu)
+    }
+}
+
+#Preview("Charizard") {
+    NavigationStack {
+        PokemonDetailView(viewModel: .previewCharizard)
+    }
+}
+
+extension PokemonDetailViewModel {
+    @MainActor
+    static var previewPikachu: PokemonDetailViewModel {
+        let detail = PokemonDetail(
+            id: 25,
+            name: "pikachu",
+            height: 4,
+            weight: 60,
+            stats: [
+                Stat(name: "hp", baseStat: 35, effort: 0),
+                Stat(name: "attack", baseStat: 55, effort: 0),
+                Stat(name: "defense", baseStat: 40, effort: 0),
+                Stat(name: "special-attack", baseStat: 50, effort: 0),
+                Stat(name: "special-defense", baseStat: 50, effort: 0),
+                Stat(name: "speed", baseStat: 90, effort: 2)
+            ],
+            types: [PokemonType(name: "electric")],
+            sprites: PokemonSprite(
+                frontDefault: URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"),
+                frontShiny: nil,
+                backDefault: nil,
+                backShiny: nil
+            )
+        )
+        
+        let repo = PreviewRepository(detail: detail)
+        let useCase = FetchPokemonDetailUseCase(repository: repo)
+        let vm = PokemonDetailViewModel(pokemonID: 25, useCase: useCase, repository: repo)
+        
+        // Trigger immediate load for preview
+        Task { @MainActor in
+            vm.loadDetail()
+        }
+        
+        return vm
+    }
+    
+    @MainActor
+    static var previewCharizard: PokemonDetailViewModel {
+        let detail = PokemonDetail(
+            id: 6,
+            name: "charizard",
+            height: 17,
+            weight: 905,
+            stats: [
+                Stat(name: "hp", baseStat: 78, effort: 0),
+                Stat(name: "attack", baseStat: 84, effort: 0),
+                Stat(name: "defense", baseStat: 78, effort: 0),
+                Stat(name: "special-attack", baseStat: 109, effort: 3),
+                Stat(name: "special-defense", baseStat: 85, effort: 0),
+                Stat(name: "speed", baseStat: 100, effort: 0)
+            ],
+            types: [PokemonType(name: "fire"), PokemonType(name: "flying")],
+            sprites: PokemonSprite(
+                frontDefault: URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png"),
+                frontShiny: nil,
+                backDefault: nil,
+                backShiny: nil
+            )
+        )
+        
+        let repo = PreviewRepository(detail: detail)
+        let useCase = FetchPokemonDetailUseCase(repository: repo)
+        let vm = PokemonDetailViewModel(pokemonID: 6, useCase: useCase, repository: repo)
+        
+        // Trigger immediate load for preview
+        Task { @MainActor in
+            vm.loadDetail()
+        }
+        
+        return vm
+    }
+}
+
+private final class PreviewRepository: PokemonRepositoryProtocol {
+    let detail: PokemonDetail
+    
+    init(detail: PokemonDetail) {
+        self.detail = detail
+    }
+    
+    func fetchPokemonList(offset: Int, limit: Int) async throws -> [Pokemon] { [] }
+    func fetchPokemonDetail(id: Int) async throws -> PokemonDetail { detail }
+    func toggleFavorite(id: Int) async -> Bool { false }
+    func isFavorite(id: Int) async -> Bool { false }
+    func getFavorites() async -> [Pokemon] { [] }
+    func getCachedPokemonCount() async -> Int { 0 }
 }
