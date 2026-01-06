@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 /// Shared preview model container for SwiftUI previews
-/// This keeps SwiftData imports isolated from the presentation layer
+/// This keeps SwiftData imports isolated from the presentation layer, it could also be another provider of data.
 final class PreviewModelContainer {
     static let shared: ModelContainer = {
         let schema = Schema([

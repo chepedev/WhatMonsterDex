@@ -6,7 +6,9 @@ A modern iOS app for browsing and discovering Pokémon, built with SwiftUI and C
 > **📚 Educational Project**: This code is shared for learning purposes. You're welcome to study the architecture, patterns, and implementation details. However, please do not clone and deploy this app to the App Store, since this project will be released and deployed for others to see it live. See [LICENSE](LICENSE) for details.
 
 This is an educational project, that demonstrates how to build a modern iOS app with SwiftUI, Clean Architecture + MVVM, and offline-first approach.
-It is currently under AppStore review/deployment, once approved:  https://apps.apple.com/us/app/whatpokemon/id6757093052
+
+It is available and deployed in Appstore: 
+https://apps.apple.com/us/app/whatpokemon/id6757093052
 
 <p align="center">
   <img src="https://img.shields.io/badge/iOS-26.2+-blue.svg" />
